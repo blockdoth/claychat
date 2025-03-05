@@ -20,25 +20,11 @@
     {
       devShells = forEachSupportedSystem (
         { pkgs }:
-        let
-          system = "x86_64-linux";
-          pkgs = import nixpkgs {
-            inherit system;
-          };
-          stdenv = pkgs.gcc14Stdenv;        
-        in
         {
           default = pkgs.mkShell {
             packages = with pkgs; [
-              llvmPackages_17.clang-tools
               raylib
-            ];
-            env = {
-              CLANGD_FLAGS = "--query-driver=${pkgs.lib.getExe pkgs.gcc14Stdenv.cc}";
-            };
-            # shellHook = ''
-            #   ln -sfn ${self.packages.${system}.default}/.build/source/build/compile_commands.json .
-            # '';            
+            ];        
           };
         }
       );

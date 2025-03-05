@@ -1,7 +1,7 @@
 // Must be defined in one file, _before_ #include "clay.h"
 #define CLAY_IMPLEMENTATION
 #include "clay.h"
-#include "raylib.h"
+#include <raylib.h>
 #include "renderers/raylib/clay_renderer_raylib.c"
 #include "stdio.h"
 #include "stdlib.h"
@@ -24,14 +24,9 @@ int main(void){
 	while(!WindowShouldClose()){
 		Clay_BeginLayout();
 
-		CLAY(
-			// CLAY_RECTANGLE({ .color = {255, 0, 0, 0} }),
-			// CLAY_LAYOUT({
-			// 	.sizing = {
-			// 		.width = CLAY_SIZING_GROW(),
-			// 		.height = CLAY_SIZING_GROW()
-			// 	}
-			// })
+		CLAY({
+        .backgroundColor = { 255, 0, 0, 0 },
+			}
 		){};
 		
 		Clay_RenderCommandArray renderCommands = Clay_EndLayout();
